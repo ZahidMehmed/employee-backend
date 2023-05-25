@@ -93,8 +93,7 @@ app.use('/userLogin', loginPostRouter)
 app.use('/userGetId', UserGetRouterById)
 
 app.get('/', (req, res)=>{
-    app.use(express.static(path.join(__dirname, '/client/build')))   
-res.sendFile(path.join(__dirname, '/client/build/index.html'))
+res.send("Welcome")
 })
 
 app.listen(process.env.PORT ||350, ()=>{
