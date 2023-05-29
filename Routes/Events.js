@@ -3,10 +3,9 @@ const app = express();
 const cors = require('cors');
 require('../db/config')
 const events = require('../ScheemaModels/EventsSchema')
-const multer = require('multer')
+
 const path = require('path');
 const fs = require('fs');
-const { findOne } = require('../ScheemaModels/EmployeeDataScheema');
 app.use(express.json())
 app.use(cors())
 // app.use(`/Uploads`, express.static('../Uploads'))

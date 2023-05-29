@@ -19,7 +19,7 @@ const CronJob = require('cron').CronJob;
 
 const moment = require('moment');
 
-const job = new CronJob('0 57 8 * * 1-6', async () => { // Exclude Sunday by using 1-6 for day of the week
+const job = new CronJob('0 20 17 * * 1-6', async () => { // Exclude Sunday by using 1-6 for day of the week
     try {  
         console.log('Cron job started');
 
@@ -85,7 +85,7 @@ AttenRouterCheckOut.post('/', async (req, res) => {
    let     employee = await EmpAttend.findOne({ email, fullName, employeeId  })
         if (employee) {
             const now = new Date();
-            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 15).getTime()) {
+            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 21).getTime()) {
                 return res.send({ message: "Check-out time has Expeired" });
             }
             employee.checkOutTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
