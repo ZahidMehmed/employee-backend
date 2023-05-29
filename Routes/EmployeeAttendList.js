@@ -19,7 +19,7 @@ const CronJob = require('cron').CronJob;
 
 const moment = require('moment');
 
-const job = new CronJob('0 20 17 * * 1-6', async () => { // Exclude Sunday by using 1-6 for day of the week
+const job = new CronJob('0 30 13 * * 1-6', async () => { // Exclude Sunday by using 1-6 for day of the week
     try {  
         console.log('Cron job started');
 
