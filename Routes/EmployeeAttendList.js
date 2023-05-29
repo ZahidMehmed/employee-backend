@@ -85,7 +85,7 @@ AttenRouterCheckOut.post('/', async (req, res) => {
    let     employee = await EmpAttend.findOne({ email, fullName, employeeId  })
         if (employee) {
             const now = new Date();
-            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 20).getTime()) {
+            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 25).getTime()) {
                 return res.send({ message: "Check-out time has Expeired" });
             }
             employee.checkOutTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
