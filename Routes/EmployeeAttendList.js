@@ -19,7 +19,7 @@ const CronJob = require('cron').CronJob;
 
 const moment = require('moment');
 
-const job = new CronJob('0 30 13 * * 1-6', async () => { // Exclude Sunday by using 1-6 for day of the week
+const job = new CronJob('0 30 05 * * 1-6', async () => { // Exclude Sunday by using 1-6 for day of the week
     try {  
         console.log('Cron job started');
 
@@ -64,7 +64,7 @@ AttendRouterCheckIn.post('/', async (req, res) => {
         const { email, fullName, employeeId } = req.body;
      let   employee = new EmpAttend({ email, fullName, employeeId });
         const now = new Date();
-        if (now.getTime() < new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 15).getTime()) {
+        if (now.getTime() < new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 20).getTime()) {
             return res.send({ message: "Check-in time has not yet arrived" });
         }
         employee.checkInTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -85,7 +85,7 @@ AttenRouterCheckOut.post('/', async (req, res) => {
    let     employee = await EmpAttend.findOne({ email, fullName, employeeId  })
         if (employee) {
             const now = new Date();
-            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 40).getTime()) {
+            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 20).getTime()) {
                 return res.send({ message: "Check-out time has Expeired" });
             }
             employee.checkOutTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -101,8 +101,6 @@ AttenRouterCheckOut.post('/', async (req, res) => {
         console.log(error);
     }
 });
-
-
 
 const EmpAttendGetRouter  = express.Router()
 EmpAttendGetRouter.get('/', async (req, resp) => {
