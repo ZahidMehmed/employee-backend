@@ -64,7 +64,7 @@ AttendRouterCheckIn.post('/', async (req, res) => {
         const { email, fullName, employeeId } = req.body;
      let   employee = new EmpAttend({ email, fullName, employeeId });
         const now = new Date();
-        if (now.getTime() < new Date(now.getFullYear(), now.getMonth(), now.getDate(), 5, 45).getTime()) {
+        if (now.getTime() < new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 15).getTime()) {
             return res.send({ message: "Check-in time has not yet arrived" });
         }
         employee.checkInTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
@@ -85,7 +85,7 @@ AttenRouterCheckOut.post('/', async (req, res) => {
    let     employee = await EmpAttend.findOne({ email, fullName, employeeId  })
         if (employee) {
             const now = new Date();
-            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 21).getTime()) {
+            if (now.getTime() > new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 40).getTime()) {
                 return res.send({ message: "Check-out time has Expeired" });
             }
             employee.checkOutTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
